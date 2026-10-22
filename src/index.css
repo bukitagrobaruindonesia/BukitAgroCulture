@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 140 30% 5%;
+    --foreground: 53 47% 87%;
+    --card: 140 26% 8%;
+    --card-foreground: 53 47% 87%;
+    --popover: 140 26% 8%;
+    --popover-foreground: 53 47% 87%;
+    --primary: 158 64% 52%;
+    --primary-foreground: 140 30% 5%;
+    --secondary: 140 20% 13%;
+    --secondary-foreground: 53 47% 87%;
+    --muted: 140 18% 14%;
+    --muted-foreground: 132 13% 62%;
+    --accent: 188 86% 53%;
+    --accent-foreground: 140 30% 5%;
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 53 47% 87%;
+    --border: 140 22% 16%;
+    --input: 140 22% 16%;
+    --ring: 158 64% 52%;
+    --radius: 0.5rem;
+    --sidebar-background: 140 26% 8%;
+    --sidebar-foreground: 53 47% 87%;
+    --sidebar-primary: 158 64% 52%;
+    --sidebar-primary-foreground: 140 30% 5%;
+    --sidebar-accent: 140 20% 13%;
+    --sidebar-accent-foreground: 53 47% 87%;
+    --sidebar-border: 140 22% 16%;
+    --sidebar-ring: 158 64% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter", system-ui, sans-serif;
+    background-image: radial-gradient(
+        ellipse 80% 50% at 50% -10%,
+        hsl(158 64% 52% / 0.07),
+        transparent
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        hsl(140 30% 3% / 0.25) 2px,
+        hsl(140 30% 3% / 0.25) 3px
+      );
+    background-attachment: fixed;
+    min-height: 100dvh;
+  }
+  .font-mono,
+  code,
+  kbd {
+    font-family: "JetBrains Mono", monospace;
+  }
+}
+
+@layer utilities {
+  .label-chrome {
+    font-family: "JetBrains Mono", monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.6875rem;
+    color: hsl(var(--muted-foreground));
+  }
+  .led {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    position: relative;
+  }
+  .led-on {
+    background: hsl(158 64% 52%);
+    box-shadow: 0 0 6px 1px hsl(158 64% 52% / 0.9);
+    animation: led-pulse 1.5s ease-in-out infinite;
+  }
+  .led-off {
+    background: hsl(0 84% 65%);
+    box-shadow: 0 0 6px 1px hsl(0 84% 65% / 0.7);
+  }
+  .led-water {
+    background: hsl(188 86% 53%);
+    box-shadow: 0 0 8px 2px hsl(188 86% 53% / 0.8);
+    animation: led-pulse 1.2s ease-in-out infinite;
+  }
+  .radar-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    border: 1px solid hsl(188 86% 53% / 0.6);
+    animation: radar 2.2s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+  }
+}
+
+@keyframes led-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes radar {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .led-on,
+  .led-water,
+  .radar-ring {
+    animation: none;
+  }
+}
